@@ -1,32 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button } from './src/components/Button';
+import { styles } from './App.styles';
+import { currencies } from './src/constants/currencies'
 
 export default function App() {
   return (
-    <View>
-      <StatusBar style="light" />
 
-      <View>
-        <Text>Conversor de Moedas</Text>
-        <Text>
-          Converta Valores entre diferentes Moedas
-        </Text>
-      </View>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView style={styles.scrollView}>
 
-      <View>
-        <Text>De:</Text>
-        <Button variant='secondary'></Button>
-      </View>
-    </View>
+        <View style={styles.content}>
+          <StatusBar style="light" />
+
+          <View style={styles.header}>
+            <Text style={styles.title}>Conversor de Moedas</Text>
+            <Text style={styles.subTitle}>
+              Converta Valores entre diferentes Moedas
+            </Text>
+          </View>
+
+          <View style={styles.card}>
+            <Text style={styles.label}>De:</Text>
+            <View>
+              {currencies.map(currency => (
+                <Button variant='primary'
+                key={currency.code}
+                currency={currency}
+                >
+
+                </Button>
+              ))}
+
+
+
+            </View>
+
+
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
