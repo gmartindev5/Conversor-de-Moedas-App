@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } fr
 import { Button } from './src/components/Button';
 import { styles } from './App.styles';
 import { currencies } from './src/constants/currencies'
+import { Input } from './src/components/input';
 
 export default function App() {
   return (
@@ -25,19 +26,17 @@ export default function App() {
 
           <View style={styles.card}>
             <Text style={styles.label}>De:</Text>
-            <View>
+            <View style={styles.currencyGrid}>
               {currencies.map(currency => (
                 <Button variant='primary'
-                key={currency.code}
-                currency={currency}
+                  key={currency.code}
+                  currency={currency}
                 >
 
                 </Button>
               ))}
-
-
-
             </View>
+            <Input label="Valor: " />
 
 
           </View>

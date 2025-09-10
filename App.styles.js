@@ -39,5 +39,13 @@ import { colors } from "./src/styles/colors";
         color: colors.textSecondary,
         marginBottom: 8,
         fontSize: 14,
-     }
+     },
+     currencyGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginHorizontal: -4,
+        marginBottom: 12,
+        alignIzems: 'center',
+        justifyContent: 'center',
+     },
  })
