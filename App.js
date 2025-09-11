@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from './src/components/Button';
 import { styles } from './App.styles';
 import { currencies } from './src/constants/currencies'
@@ -38,8 +38,30 @@ export default function App() {
             </View>
             <Input label="Valor: " />
 
+            <TouchableOpacity style={styles.swapButton}>
+              <Text style={styles.swapButtonText}>
+                ↑ ↓
+              </Text>
+            </TouchableOpacity>
 
+            <Text style={styles.label}>Para: </Text>
+            <View style={styles.currencyGrid}>
+                  {currencies.map(currency => (
+                <Button variant='secondary'
+                  key={currency.code}
+                  currency={currency}
+                >
+
+                </Button>
+              ))}
+            </View>
           </View>
+
+          <TouchableOpacity>
+            <Text style={styles.swapButtonText}> 
+              Converter
+            </Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

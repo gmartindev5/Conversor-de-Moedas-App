@@ -48,4 +48,17 @@ import { colors } from "./src/styles/colors";
         alignIzems: 'center',
         justifyContent: 'center',
      },
+     swapButton: {
+      backgroundColor: colors.inputBackground,
+      paddingVertical: 16,
+      paddingHorizontal: 24,
+      borderRadius: 12,
+      marginBottom: 24,
+     },
+     swapButtonText:{
+      color: '#fff',
+      textAlign: 'center',
+      fontSize: 18,
+      fontWeight: '600',
+     },
  })
