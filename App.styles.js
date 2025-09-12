@@ -61,4 +61,14 @@ import { colors } from "./src/styles/colors";
       fontSize: 18,
       fontWeight: '600',
      },
+     convertButton: {
+      backgroundColor: colors.primary,
+      paddingVertical: 16,
+      paddingHorizontal: 24,
+      borderRadius: 12,
+      marginBottom: 24,
+     },
+     convertButtonDisabled: {
+      backgroundColor: colors.disabled,
+     }
  })

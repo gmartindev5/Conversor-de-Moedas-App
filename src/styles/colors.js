@@ -1,10 +1,10 @@
 export const colors = {
-  primary: '#2563eb',
-  secondary: '#16a34a',
-  background: '#0f172a',
-  cardBackground: '#1e293b',
-  inputBackground: '#334155',
-  text: '#ffffff',
-  textSecondary: '#94a3b8',
-  disabled: '#334155',
+  primary: '#3b82f6',       
+  secondary: '#d97706',     
+  background: '#0a0a0f',    
+  cardBackground: '#18181b', 
+  inputBackground: '#27272a', 
+  text: '#f4f4f5',         
+  textSecondary: '#9ca3af', 
+  disabled: '#3f3f46',      
 };
