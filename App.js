@@ -5,8 +5,22 @@ import { styles } from './App.styles';
 import { currencies } from './src/constants/currencies'
 import { Input } from './src/components/input';
 import { ResultCard } from './src/components/ResultCard/styles';
+import { exchangerateApi } from './src/services/api'
+import { useState } from 'react';
 
 export default function App() {
+  const [amount, setAmount] = useState('')
+  const [fromCurrency, setfromCurrency] = useState('USD')
+  const [toCurrency, setToCurrency] = useState('BRL')
+  const [result, setResult] = useState('')
+  const [loadign, setLoading] = useState(false)
+  const [exchangeRate, setexchangeRate] = useState(null)
+
+  async function fetchExchangeRate() {
+    const data = await exchangerateApi(`BRL`)
+    console.log(data)
+  }
+
   return (
 
     <KeyboardAvoidingView
@@ -32,6 +46,7 @@ export default function App() {
                 <Button variant='primary'
                   key={currency.code}
                   currency={currency}
+                  onPress={() => setfromCurrency(currency.code)}
                 >
 
                 </Button>
@@ -47,10 +62,12 @@ export default function App() {
 
             <Text style={styles.label}>Para: </Text>
             <View style={styles.currencyGrid}>
-                  {currencies.map(currency => (
+              {currencies.map(currency => (
                 <Button variant='secondary'
                   key={currency.code}
                   currency={currency}
+                  onPress={() => setToCurrency(currency.code)}
+                  isSelected={true}
                 >
 
                 </Button>
@@ -58,8 +75,11 @@ export default function App() {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.convertButton}>
-            <Text style={styles.swapButtonText}> 
+          <TouchableOpacity
+            style={styles.convertButton}
+            onPress={fetchExchangeRate}
+          >
+            <Text style={styles.swapButtonText}>
               Converter
             </Text>
           </TouchableOpacity>
