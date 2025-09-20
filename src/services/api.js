@@ -11,3 +11,7 @@ export async function exchangerateApi(fromCurrency) {
         console.log(error)
     }
 }
+
+export function convertCurrency (amount, rate) {
+    return (parseFloat(amount) * rate)
+}
