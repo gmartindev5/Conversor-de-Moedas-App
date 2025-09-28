@@ -4,8 +4,9 @@ import { Button } from './src/components/Button';
 import { styles } from './App.styles';
 import { currencies } from './src/constants/currencies'
 import { Input } from './src/components/input';
-import { ResultCard } from './src/components/ResultCard/styles';
+import { ResultCard } from './src/components/ResultCard/index';
 import { exchangerateApi } from './src/services/api'
+import { convertCurrency } from './src/utils/convertCurrency';
 import { useState } from 'react';
 
 export default function App() {
@@ -14,12 +15,14 @@ export default function App() {
   const [toCurrency, setToCurrency] = useState('BRL')
   const [result, setResult] = useState('')
   const [loadign, setLoading] = useState(false)
-  const [exchangeRate, setexchangeRate] = useState(null)
+  const [exchangeRate, setExchangeRate] = useState(null)
 
   async function fetchExchangeRate() {
     const data = await exchangerateApi(fromCurrency)
     const rate = data.rates[toCurrency]
-    console.log(rate * amount)
+    setExchangeRate(rate)
+    const convertedAmount = convertCurrency(amount, rate)
+    setResult(convertedAmount)
   }
 
   return (
@@ -54,7 +57,7 @@ export default function App() {
                 </Button>
               ))}
             </View>
-            <Input label="Valor: " value={amount} onChangeText={setAmount}/>
+            <Input label="Valor: " value={amount} onChangeText={setAmount} />
 
             <TouchableOpacity style={styles.swapButton}>
               <Text style={styles.swapButtonText}>
@@ -86,7 +89,13 @@ export default function App() {
             </Text>
           </TouchableOpacity>
 
-          <ResultCard />
+          <ResultCard 
+           exchangeRate={exchangeRate}
+           result={result}
+           fromCurrency={fromCurrency}
+           toCurrency={toCurrency}
+           currencies={currencies}
+          />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
